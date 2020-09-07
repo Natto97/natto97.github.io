@@ -1,0 +1,1307 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <title>端口渗透</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+    <figure>
+        <table  class="table">
+            <thead>
+                <tr>
+                    <th style='text-align:left;'><strong>Port Number</strong></th>
+                    <th style='text-align:left;'><strong>Protocol</strong></th>
+                    <th style='text-align:left;'><strong>Service &amp; Application</strong></th>
+                    <th style='text-align:left;'><strong>Commands</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style='text-align:left;'>1</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>blackice</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>7</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>echo</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>11</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>systat</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>13</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>daytime</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>15</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>netstat</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>17</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>quote of the day</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>19</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>character generator</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>21</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ftp</td>
+                    <td style='text-align:left;'>nmap
+                        --script=ftp-anon,ftp-libopie,ftp-proftpd-backdoor,ftp-vsftpd-backdoor,ftp-vuln-cve2010-4221,tftp-enum
+                        -p 21 <em>IP</em></td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>22</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ssh</td>
+                    <td style='text-align:left;'>msf &gt; use auxiliary/scanner/ssh/ssh_login<br>nmap --script
+                        ssh2-enum-algos 192.168.108.197 <br>nmap --script ssh-hostkey <em>IP</em> <br>nmap --script
+                        sshv1 192.168.108.197</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>23</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>telnet</td>
+                    <td style='text-align:left;'>msf &gt; use auxiliary/scanner/telnet/telnet_login <br>nmap -p 23
+                        --script telnet-brute --script-args <em>IP</em>
+                        userdb=myusers.lst,passdb=mypwds.lst,telnet-brute.timeout=8s <em>IP</em> <br>nmap -p 23 --script
+                        telnet-encryption <em>IP</em> nmap -p 23 --script telnet-ntlm-info <em>IP</em></td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>25</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>smtp</td>
+                    <td style='text-align:left;'>nmap -p 25 --script smtp-brute IP<br>nmap --script smtp-commands.nse
+                        [--script-args smtp-commands.domain=domain] -pT:25,465,587 IP<br>nmap -p 25,465,587 --script
+                        smtp-ntlm-info --script-args smtp-ntlm-info.domain=domain.com IP<br>nmap --script
+                        smtp-open-relay.nse [--script-args smtp-open-relay.domain=domain,smtp-open-relay.ip=address,...]
+                        -p 25,465,587 IP<br>nmap --script=smtp-vuln-cve2010-4344
+                        --script-args=&quot;smtp-vuln-cve2010-4344.exploit&quot; -pT:25,465,587 IP<br>nmap
+                        --script=smtp-vuln-cve2010-4344 --script-args=&quot;exploit.cmd=&#39;uname -a&#39;&quot;
+                        -pT:25,465,587 IP<br>nmap --script=smtp-vuln-cve2011-1720
+                        --script-args=&#39;smtp.domain=domain&#39; -pT:25,465,587 IP<br>nmap
+                        --script=smtp-vuln-cve2011-1764 -pT:25,465,587 IP</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>26</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ssh</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>37</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>rdate</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>49</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>TACACS+</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>53</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>dns</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>53</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>dns</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>67</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>DHCP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>68</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>dhclient</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>69</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>TFTP,BitTorrent</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>70</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Gopher</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>79</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Finger</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>80</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>HTTP,malware</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>81</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>HTTP,malware</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>82</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>HTTP,malware</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>83</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>HTTP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>84</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>HTTP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>88</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Kerberos</td>
+                    <td style='text-align:left;'>use auxiliary/admin/kerberos/ms14_068_kerberos_checksum</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>102</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Siemens S7</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>110</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>pop3</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>111</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>RPC</td>
+                    <td style='text-align:left;'>rpcinfo -p 192.168.1.111<br>msf &gt;use
+                        auxiliary/scanner/nfs/nfsmount<br>Nfspy</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>119</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>NNTP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>123</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>NTP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>123</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>ntp</td>
+                    <td style='text-align:left;'>ntpdc -n -c monlist IP<br>nmap -sU -p 123 -Pn -n --script ntp-info
+                        IP<br>nmap -sU -p 123 -Pn -n --script ntp-monlist IP<br>msf &gt; use
+                        auxiliary/scanner/ntp/ntp_readvar</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>137</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>NetBIOS</td>
+                    <td style='text-align:left;'>nbtscan -A <em>IP</em></td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>139</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>SMB</td>
+                    <td style='text-align:left;'>enum4linux -a IP<br>rpcclient -U &quot;&quot; IP + srvinfo;
+                        enumdomusers; getdompwinfo; querydominfo; netshareenum; netshareenumall</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>143</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>IMAP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>161</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>snmp</td>
+                    <td style='text-align:left;'>snmpcheck -p 161 -c public -t IP<br>snmpwalk -v1 -c public IP<br>msf
+                        &gt; use auxiliary/scanner/snmp/snmp_enum</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>162</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>snmp</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>175</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>IBM Network Job Entry</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>179</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>BGP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>195</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>TA14-353a</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>264</td>
+                    <td style='text-align:left;'>Checkpoint Firewall</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>311</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>OS X Server Manager</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>389</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ldap</td>
+                    <td style='text-align:left;'>ldap://IP/dc=com</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>443</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>https</td>
+                    <td style='text-align:left;'>openssl s_client -host ADDR -port 443<br>sslscan ADDR<br>tlssled ADDR
+                        443<br>nmap --script sslv2 ADDR<br>nmap --script ssl-cert ADDR<br>nmap --script ssl-date
+                        ADDR<br>nmap --script ssl-enum-ciphers ADDR<br>nmap --script ssl-google-cert-catalog ADDR<br>msf
+                        &gt; use auxiliary/pro/web_ssl_scan<br>msf &gt; use
+                        auxiliary/scanner/ssl/openssl_heartbleed<br>msf &gt; use
+                        auxiliary/server/openssl_heartbeat_client_memory</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>445</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Microsoft-DS Active Directory, Windows shares Microsoft-DS SMB file
+                        sharing</td>
+                    <td style='text-align:left;'>smbclient -U root -L IP<br>smbclient -U root //IP/tmp<br>rpcclient -U
+                        &quot;&quot; IP<br>msf &gt; auxiliary/admin/smb/samba_symlink_traversal</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>465</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>smtps</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>500</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>ike</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>502</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>modbus</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>503</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>modbus</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>512</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>513</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>514</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>515</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Line Printer Daemon</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>520</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>RIP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>523</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>IBM DB2</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>554</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>RTSP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>587</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>SMTP mail submission</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>623</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>IPMI</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>626</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>OS X serialnumbered</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>631</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>CUPS Service error</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>636</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ldaps</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>771</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Realport</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>789</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Redlion Crimson3</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>873</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>rsync</td>
+                    <td style='text-align:left;'>rsync -a user@host::tools/<br>nmap -p 873 --script rsync-brute
+                        --script-args &#39;rsync-brute.module=www&#39; IP<br>nmap -p 873 --script rsync-list-modules
+                        IP<br>msf &gt;use auxiliary/scanner/rsync/modules_list</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>902</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>VMware authentication</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>953</td>
+                    <td style='text-align:left;'>BIND Contorl Port</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>992</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Telnet(secure)</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>993</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>IMAPs</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>995</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>POP3s</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1023</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>telnet</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1025</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Kamstrup</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1030</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>RPC</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1032</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>RPC</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1033</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>RPC</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1038</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>RPC</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1099</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Remote Method invocation</td>
+                    <td style='text-align:left;'>use exploit/multi/misc/java_rmi_server</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1194</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>openvpn</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1200</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Codesys</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1234</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>udpxy</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1202</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>linknat</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1433</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>MS-SQL</td>
+                    <td style='text-align:left;'>use auxiliary/scanner/mssql/mssql_ping<br/>
+			setoolkit(set:fasttrack:mssql>)扫描一个网段的sa账户弱口令
+			</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1434</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>MS-SQL monitor</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1521</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Oracle</td>
+                    <td style='text-align:left;'>tnscmd10g version/status -h <em>IP</em></td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1604</td>
+                    <td style='text-align:left;'>Citrix, malware</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1723</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>pptp</td>
+                    <td style='text-align:left;'>thc-pptp-bruter -v -u username -n 4 IP &lt; pass.txt</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1741</td>
+                    <td style='text-align:left;'>CiscoWorks</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1833</td>
+                    <td style='text-align:left;'>MQTT</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1900</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>bes,UPnP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1911</td>
+                    <td style='text-align:left;'>Niagara Fox</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>1962</td>
+                    <td style='text-align:left;'>PCworx</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2000</td>
+                    <td style='text-align:left;'>iKettle,MikroTik bandwidth test</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2049</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>nfs</td>
+                    <td style='text-align:left;'>showmount --all IP<br>showmount --exports IP<br>mount -t nfs IP:/
+                        /mnt/nfs/<br>Nfspy</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2082</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>cpanel</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2083</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>cpanel</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2086</td>
+                    <td style='text-align:left;'>WHM</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2087</td>
+                    <td style='text-align:left;'>WHM</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2100</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Oracel XML DB</td>
+                    <td style='text-align:left;'><a
+                            href='https://docs.oracle.com/cd/B10501_01/win.920/a95490/username.htm'>Default
+                            Username/Passwords</a></td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2121</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ftp</td>
+                    <td style='text-align:left;'>use auxiliary/scanner/ftp/ftp_login</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2123</td>
+                    <td style='text-align:left;'>GTPv1</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2152</td>
+                    <td style='text-align:left;'>GTPv1</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2182</td>
+                    <td style='text-align:left;'>Apache Zookeeper</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2222</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>SSH, PLC5, EtherNet/IP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2323</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>telnet</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2332</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Sierra wireless(telnet)</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2375</td>
+                    <td style='text-align:left;'>Docker</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2376</td>
+                    <td style='text-align:left;'>Docker</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2404</td>
+                    <td style='text-align:left;'>IEC-104</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2455</td>
+                    <td style='text-align:left;'>CoDeSys</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2480</td>
+                    <td style='text-align:left;'>OrientDB</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2628</td>
+                    <td style='text-align:left;'>Dictionary</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>2967</td>
+                    <td style='text-align:left;'>Symantec System Center Alert Management System</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3000</td>
+                    <td style='text-align:left;'>ntop</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3128</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>squid</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3299</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>sap</td>
+                    <td style='text-align:left;'>msf &gt; use auxiliary/scanner/sap/sap_router_portscanner</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3306</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>mysql</td>
+                    <td style='text-align:left;'>msf &gt; auxiliary/scanner/mysql/mysql_login<br>nmap --script
+                        mysql-brute IP<br>nmap --script mysql-databases IP<br>nmap -p 3306 --script mysql-dump-hashes
+                        IP<br>--script-args=&#39;username=username,password=password&#39; IP<br>nmap -p 3306 --script
+                        mysql-enum IP<br>nmap -p 3306 --script mysql-users IP<br>nmap -p 3306 --script mysql-query
+                        --script-args=&#39;query=&quot;query&quot;[,username=username,password=password] IP&#39;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3310</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ClamAV</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3339</td>
+                    <td style='text-align:left;'>Oracle Web Interace</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3386</td>
+                    <td style='text-align:left;'>GTPv1</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3388</td>
+                    <td style='text-align:left;'>RDP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3389</td>
+                    <td style='text-align:left;'>RDP</td>
+                    <td style='text-align:left;'>rdesktop -u guest -p guest <em>IP</em> -g 94% rdp-sec-check <em>IP</em>
+                    </td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3541</td>
+                    <td style='text-align:left;'>PBX GUI</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3542</td>
+                    <td style='text-align:left;'>PBX GUI</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3632</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>distccd</td>
+                    <td style='text-align:left;'>msf &gt; use exploit/unix/misc/distcc_exec</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3689</td>
+                    <td style='text-align:left;'>DACP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3780</td>
+                    <td style='text-align:left;'>Metasploit</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>3787</td>
+                    <td style='text-align:left;'>Ventrilo</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4022</td>
+                    <td style='text-align:left;'>udpxy</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4369</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Erlang Port Mapper Daemon</td>
+                    <td style='text-align:left;'>nmap -p 4369 --script epmd-info <em>IP</em></td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4440</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>rundeck</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4500</td>
+                    <td style='text-align:left;'>IKE NAT-T(VPN)</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4567</td>
+                    <td style='text-align:left;'>Modem web interface</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4070</td>
+                    <td style='text-align:left;'>VertX/Edge door controller</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4800</td>
+                    <td style='text-align:left;'>Noxa Nport</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4911</td>
+                    <td style='text-align:left;'>Niagara Fox with SSL</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>4949</td>
+                    <td style='text-align:left;'>Munin</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5006</td>
+                    <td style='text-align:left;'>MELSEC-Q</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5007</td>
+                    <td style='text-align:left;'>MELSEC-Q</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5008</td>
+                    <td style='text-align:left;'>NetMobility</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5009</td>
+                    <td style='text-align:left;'>Apple Aitport Administrator</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5038</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Asterisk Call Manager</td>
+                    <td style='text-align:left;'><a href='http://code.google.com/p/sipvicious/' target='_blank'
+                            class='url'>http://code.google.com/p/sipvicious/</a><br><br>$ ncat -v 192.168.108.196
+                        5038<br>Ncat: Version 6.47 ( <a href='http://nmap.org/ncat' target='_blank'
+                            class='url'>http://nmap.org/ncat</a> )<br>Ncat: Connected to
+                        192.168.108.196:5038.<br>Asterisk Call Manager/1.1<br>action: login<br>username:
+                        admin<br>secret: amp111<br>Response: Success<br>Message: Authentication accepted<br>action:
+                        command<br>command: core show help</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5432</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>postgresql</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5060</td>
+                    <td style='text-align:left;'>udp</td>
+                    <td style='text-align:left;'>sip</td>
+                    <td style='text-align:left;'>msf &gt; use auxiliary/scanner/sip/options</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5222</td>
+                    <td style='text-align:left;'>XMPP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5269</td>
+                    <td style='text-align:left;'>XMPP Server to Server</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5353</td>
+                    <td style='text-align:left;'>mDNS</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5357</td>
+                    <td style='text-align:left;'>Mirosoft-HTTP API/2.0</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5432</td>
+                    <td style='text-align:left;'>Postgresql</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5555</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>hp data protector</td>
+                    <td style='text-align:left;'>msf &gt; use exploit/windows/misc/hp_dataprotector_cmd_exec</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5577</td>
+                    <td style='text-align:left;'>Flux LED</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5601</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>kibana</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5632</td>
+                    <td style='text-align:left;'>PCAnywhere</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5672</td>
+                    <td style='text-align:left;'>RabbitMQ</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5900</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>vnc</td>
+                    <td style='text-align:left;'>msf &gt; use auxiliary/scanner/vnc/vnc_none_auth<br>msf &gt; use
+                        auxiliary/scanner/vnc/vnc_login<br>msf &gt; use exploit/multi/vnc/vnc_keyboard_exec<br>nmap
+                        --script vnc-brute -p 5900<br>nmap --script vnc-info -p 5900</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5901</td>
+                    <td style='text-align:left;'>vnc</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5938</td>
+                    <td style='text-align:left;'>TeamViewer</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5984</td>
+                    <td style='text-align:left;'>CouchDB</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>5985</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>winrm</td>
+                    <td style='text-align:left;'>msf &gt;use exploit/windows/winrm/winrm_script_exec<br>msf &gt;use
+                        auxiliary/scanner/winrm/winrm_auth_methods<br>msf &gt;use
+                        auxiliary/scanner/winrm/winrm_cmd<br>msf &gt;use auxiliary/scanner/winrm/winrm_login<br>msf
+                        &gt;use auxiliary/scanner/winrm/winrm_wql</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>6000</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>x11</td>
+                    <td style='text-align:left;'>xwd -root -screen -slient -display 192.168.1.108:0 &gt;
+                        out.xwd<br>convert out.xwd out.png</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>6379</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>redis</td>
+                    <td style='text-align:left;'>redis-cli -h 127.0.0.1 -p 6379<br>msf &gt;use
+                        auxiliary/scanner/redis/file_upload<br>msf &gt;use auxiliary/scanner/redis/redis_login<br>use
+                        auxiliary/scanner/redis/redis_server</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>6380</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>redis</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>6082</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>varnish</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>6667</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ircd backdoor</td>
+                    <td style='text-align:left;'>msf &gt; use exploit/unix/irc/unreal_ircd_3281_backdoor</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>6881</td>
+                    <td style='text-align:left;'>BitTorrent</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>6969</td>
+                    <td style='text-align:left;'>TFTP,BitTorrent</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>7001</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>weblogic</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8080</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>jekins</td>
+                    <td style='text-align:left;'>Jekins Console<br>println &quot;cmd.exe /c
+                        dir&quot;.execute().text<br><br>msf &gt;use auxiliary/scanner/http/jenkins_enum<br>msf &gt;use
+                        exploit/multi/http/jenkins_script_console</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8083</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>vestacp</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8089</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>jboss</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8101</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>apache karaf</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8180</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>apache tomcat</td>
+                    <td style='text-align:left;'>msf &gt; use exploit/multi/http/tomcat_mgr_deploy</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8443</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>https</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8443</td>
+                    <td style='text-align:left;'>Symantec SEP Manager</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8554</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>rtsp</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>8649</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>ganglia</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>9009</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Julia</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>9043</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>WebSpeher</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>9090</td>
+                    <td style='text-align:left;'>Symantec SEP Manager</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>9151</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Tor Control</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>9160</td>
+                    <td style='text-align:left;'>Apache Cassandra</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>9200</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>elasticsearch</td>
+                    <td style='text-align:left;'>msf &gt;use exploit/multi/elasticsearch/search_groovy_script</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>9418</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>git</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>10000</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>virtualmin/webmin</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>11211</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>memcache</td>
+                    <td style='text-align:left;'>msf &gt; use auxiliary/gather/memcached_extractor<br>$ nc x.x.x.x
+                        11211<br>stats\r\n</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>12174</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>Symantec System Center Alert Management System</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>13579</td>
+                    <td style='text-align:left;'>Media Player classic web interface</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>17185</td>
+                    <td style='text-align:left;'>VxWorks WDBRPC</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>18083</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>vbox server</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>27017</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>mongodb</td>
+                    <td style='text-align:left;'>msf &gt;use auxiliary/scanner/mongodb/mongodb_login<br>$ mongo
+                        host:port/database<br>MongoDB shell version: 2.6.12<br>&gt; help</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>28017</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>mongodb</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>37777</td>
+                    <td style='text-align:left;'>Dahua DVR</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>38292</td>
+                    <td style='text-align:left;'>Symantec System Center Alert Management System</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>44818</td>
+                    <td style='text-align:left;'>EtherNet/IP</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>49153</td>
+                    <td style='text-align:left;'>WeMo Link</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>50000</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>sap</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>50030</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>hadoop</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>50070</td>
+                    <td style='text-align:left;'>tcp</td>
+                    <td style='text-align:left;'>hadoop</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>51106</td>
+                    <td style='text-align:left;'>Deluge(HTTP)</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>54138</td>
+                    <td style='text-align:left;'>Toshiba PoS</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>55553</td>
+                    <td style='text-align:left;'>Metasploit</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>55554</td>
+                    <td style='text-align:left;'>Metasploit</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>62078</td>
+                    <td style='text-align:left;'>Apple iDevice</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align:left;'>64738</td>
+                    <td style='text-align:left;'>Mumble</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                    <td style='text-align:left;'>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</body>
+
+</html>
